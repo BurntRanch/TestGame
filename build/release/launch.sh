@@ -1,0 +1,1 @@
+LD_PRELOAD=lib/release/libengine.so.1 ./build/release/game
