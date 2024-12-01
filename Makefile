@@ -39,4 +39,4 @@ clean:
 distclean:
 	rm -rf $(BUILDDIR) $(OBJ)
 
-.PHONY: $(TARGET) clean all
+.PHONY: $(TARGET) distclean dist clean all
