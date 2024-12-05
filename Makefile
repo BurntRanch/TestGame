@@ -19,7 +19,7 @@ SRC 	   	 = $(sort $(wildcard src/*.cpp))
 OBJ 	   	 = $(SRC:.cpp=.o)
 LDFLAGS   	+= -L$(BUILDDIR)/sdl_engine -lfmt -lSDL3 -lengine
 CXXFLAGS  	?= -mtune=generic -march=native
-CXXFLAGS        += -funroll-all-loops -Iinclude -Iinclude/engine -isystem/usr/include/freetype2 -std=c++17 $(VARS)
+CXXFLAGS        += -funroll-all-loops -Iinclude -Ilib/sdl_engine/include -isystem/usr/include/freetype2 -std=c++17 $(VARS)
 
 all: engine $(TARGET)
 
@@ -31,7 +31,9 @@ engine:
 ifeq ($(wildcard $(BUILDDIR)/sdl_engine/libengine.so.1),)
 	make -C lib/sdl_engine CXX=$(CXX) VARS=$(VARS) DEBUG=$(DEBUG)
 	mkdir -p $(BUILDDIR)/sdl_engine
+	mkdir -p $(BUILDDIR)/sdl_engine/steam
 	mv lib/sdl_engine/$(BUILDDIR)/libengine.so.1 $(BUILDDIR)/sdl_engine/
+	mv lib/sdl_engine/$(BUILDDIR)/steam/* $(BUILDDIR)/sdl_engine/steam/
 	cd $(BUILDDIR)/sdl_engine && ln -sf libengine.so.1 libengine.so
 endif
 

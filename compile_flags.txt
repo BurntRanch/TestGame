@@ -1,3 +1,3 @@
 -Iinclude
--Iinclude/engine
+-Ilib/sdl_engine/include
 -isystem/usr/include/freetype2

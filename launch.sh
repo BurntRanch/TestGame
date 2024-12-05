@@ -1,1 +1,1 @@
-LD_PRELOAD=lib/debug/libengine.so.1 ./build/debug/game
+LD_PRELOAD=build/debug/sdl_engine/libengine.so:build/debug/steam/libGameNetworkingSockets.so ./build/debug/game
