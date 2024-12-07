@@ -1,6 +1,8 @@
 build*/
 SDL
 game
+settings.*
+!settings.def.toml
 
 *.tar.*
 
