@@ -27,7 +27,7 @@
 #include "rapidxml_print.hpp"
 #include "tinyfiledialogs.h"
 
-Camera cam(glm::vec3(1.0f, 1.0f, 1.0f));
+Camera cam(glm::vec3(-1.0f, 0.0f, 0.0f));
 Settings settings("settings.toml");
 std::unique_ptr<Engine> engine;
 
@@ -48,6 +48,17 @@ void FixedUpdate(const std::array<bool, 322> &keyMap) {
 void onButtonClick(std::string id) {
     if (id == "playButton") {
         fmt::println("*plays*");
+
+        engine->ImportScene("viking_room.xml");
+
+        UI::GenericElement *mainMenuGroup = engine->GetElementByID("mainMenuGroup");
+
+        UI::GenericElement *hudGroup = engine->GetElementByID("hudGroup");
+
+        if (mainMenuGroup && mainMenuGroup->type == UI::SCALABLE) {
+            mainMenuGroup->SetVisible(false);
+            hudGroup->SetVisible(true);
+        }
     }
 }
 

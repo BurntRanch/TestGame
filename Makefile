@@ -41,7 +41,7 @@ dist: $(TARGET)
 	bsdtar -zcf $(NAME)-v$(VERSION).tar.gz LICENSE README.md -C $(BUILDDIR) $(TARGET)
 
 clean:
-	rm -rf $(BUILDDIR)/$(TARGET) $(OBJ)
+	rm -rf $(BUILDDIR)/* $(OBJ)
 
 distclean:
 	rm -rf $(BUILDDIR) $(OBJ)
