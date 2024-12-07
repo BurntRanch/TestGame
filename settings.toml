@@ -1,6 +1,6 @@
 [video]
 VSyncEnabled = true
-RenderWidth = 800 # There's a 3D space behind the UI.. you don't see it because this is a 2D game
+RenderWidth = 800
 RenderHeight = 600
 DisplayWidth = 800
 DisplayHeight = 600
