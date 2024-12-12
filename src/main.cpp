@@ -18,6 +18,8 @@
 #include "camera.hpp"
 #include "common.hpp"
 #include "model.hpp"
+#include "steamnetworkingtypes.h"
+#include "isteamnetworkingutils.h"
 #include "ui/arrows.hpp"
 #include "ui/button.hpp"
 #include "ui/label.hpp"
@@ -49,16 +51,22 @@ void onButtonClick(std::string id) {
     if (id == "playButton") {
         fmt::println("*plays*");
 
-        engine->ImportScene("viking_room.xml");
+        // engine->ImportScene("viking_room.xml");
 
-        UI::GenericElement *mainMenuGroup = engine->GetElementByID("mainMenuGroup");
+        // UI::GenericElement *mainMenuGroup = engine->GetElementByID("mainMenuGroup");
 
-        UI::GenericElement *hudGroup = engine->GetElementByID("hudGroup");
+        // UI::GenericElement *hudGroup = engine->GetElementByID("hudGroup");
 
-        if (mainMenuGroup && mainMenuGroup->type == UI::SCALABLE) {
-            mainMenuGroup->SetVisible(false);
-            hudGroup->SetVisible(true);
-        }
+        // if (mainMenuGroup && mainMenuGroup->type == UI::SCALABLE) {
+        //     mainMenuGroup->SetVisible(false);
+        //     hudGroup->SetVisible(true);
+        // }
+
+        SteamNetworkingIPAddr ipAddr;
+        ipAddr.Clear();
+        ipAddr.ParseString("127.0.0.1:9582");
+
+        engine->ConnectToGameServer(ipAddr);
     }
 }
 
@@ -69,22 +77,14 @@ int main() {
 
     engine = std::make_unique<Engine>();
     
-    try {
-        engine->InitRenderer(settings, &cam);
-        Renderer *renderer = engine->GetRenderer();
+    engine->InitRenderer(settings, &cam);
+    engine->InitNetworking();
 
-        // renderer->RegisterUpdateFunction(Update);
-        // renderer->RegisterFixedUpdateFunction(FixedUpdate);
+    engine->RegisterUIButtonListener(onButtonClick);
 
-        engine->RegisterUIButtonListener(onButtonClick);
+    engine->LoadUIFile("ui.xml");
 
-        engine->LoadUIFile("ui.xml");
-
-        engine->StartRenderer();
-    } catch(const std::runtime_error &e) {
-        fmt::println("Exception has occurred: {}", e.what());
-        return -1;
-    }
+    engine->StartRenderer();
 
     return 0;
 }
