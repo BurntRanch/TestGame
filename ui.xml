@@ -162,7 +162,7 @@
         <Properties>
             <ID>gameTitle</ID>
 
-            <Text>Lost in Transit</Text>
+            <Text>Test Game</Text>
 
             <Position>
                 <X>0.05</X>
