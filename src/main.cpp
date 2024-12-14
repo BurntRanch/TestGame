@@ -51,17 +51,6 @@ void onButtonClick(std::string id) {
     if (id == "playButton") {
         fmt::println("*plays*");
 
-        // engine->ImportScene("viking_room.xml");
-
-        // UI::GenericElement *mainMenuGroup = engine->GetElementByID("mainMenuGroup");
-
-        // UI::GenericElement *hudGroup = engine->GetElementByID("hudGroup");
-
-        // if (mainMenuGroup && mainMenuGroup->type == UI::SCALABLE) {
-        //     mainMenuGroup->SetVisible(false);
-        //     hudGroup->SetVisible(true);
-        // }
-
         SteamNetworkingIPAddr ipAddr;
         ipAddr.Clear();
         ipAddr.ParseString("127.0.0.1:9582");
