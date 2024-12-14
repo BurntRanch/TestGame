@@ -48,9 +48,7 @@ void FixedUpdate(const std::array<bool, 322> &keyMap) {
 }
 
 void onButtonClick(std::string id) {
-    if (id == "playButton") {
-        fmt::println("*plays*");
-
+    if (id == "connectButton") {
         SteamNetworkingIPAddr ipAddr;
         ipAddr.Clear();
         ipAddr.ParseString("127.0.0.1:9582");
