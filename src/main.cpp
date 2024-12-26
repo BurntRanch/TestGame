@@ -29,7 +29,7 @@
 #include "rapidxml_print.hpp"
 #include "tinyfiledialogs.h"
 
-Camera cam(glm::vec3(-1.0f, 0.0f, 0.0f));
+Camera cam(glm::vec3(0.0f, 0.0f, 0.0f));
 Settings settings("settings.toml");
 std::unique_ptr<Engine> engine;
 
