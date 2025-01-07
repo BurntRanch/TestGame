@@ -17,7 +17,7 @@ NAME		 = LostInTransit
 TARGET		 = game
 SRC 	   	 = $(sort $(wildcard src/*.cpp))
 OBJ 	   	 = $(SRC:.cpp=.o)
-LDFLAGS   	+= -L$(BUILDDIR)/sdl_engine -L$(BUILDDIR)/sdl_engine/steam -lfmt -lSDL3 -lengine -lGameNetworkingSockets
+LDFLAGS   	+= -L$(BUILDDIR)/sdl_engine -L$(BUILDDIR)/sdl_engine/steam -L$(BUILDDIR)/sdl_engine/fmt -l:libfmt.a -lSDL3 -lengine -lGameNetworkingSockets
 CXXFLAGS  	?= -mtune=generic -march=native
 CXXFLAGS        += -funroll-all-loops -Iinclude -Ilib/sdl_engine/include -Ilib/sdl_engine/steam/GameNetworkingSockets/include/steam -isystem/usr/include/freetype2 -std=c++17 $(VARS)
 
@@ -33,6 +33,7 @@ ifeq ($(wildcard $(BUILDDIR)/sdl_engine/libengine.so.1),)
 	mkdir -p $(BUILDDIR)/sdl_engine
 	mv lib/sdl_engine/$(BUILDDIR)/libengine.so.1 $(BUILDDIR)/sdl_engine/
 	mv lib/sdl_engine/$(BUILDDIR)/steam/ $(BUILDDIR)/sdl_engine/
+	mv lib/sdl_engine/$(BUILDDIR)/fmt/ $(BUILDDIR)/sdl_engine/
 	cd $(BUILDDIR)/sdl_engine && ln -sf libengine.so.1 libengine.so
 endif
 
