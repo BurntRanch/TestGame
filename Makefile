@@ -17,9 +17,9 @@ NAME		 = LostInTransit
 TARGET		 = game
 SRC 	   	 = $(sort $(wildcard src/*.cpp))
 OBJ 	   	 = $(SRC:.cpp=.o)
-LDFLAGS   	+= -L$(BUILDDIR)/sdl_engine -L$(BUILDDIR)/sdl_engine/steam -L$(BUILDDIR)/sdl_engine/fmt -l:libfmt.a -lSDL3 -lengine -lGameNetworkingSockets
+LDFLAGS   	+= -L$(BUILDDIR)/sdl_engine -L$(BUILDDIR)/sdl_engine/steam -L$(BUILDDIR)/sdl_engine/fmt -lBulletSoftBody -lBulletDynamics -lBulletCollision -lLinearMath -l:libfmt.a -lSDL3 -lengine -lGameNetworkingSockets
 CXXFLAGS  	?= -mtune=generic -march=native
-CXXFLAGS        += -funroll-all-loops -Iinclude -Ilib/sdl_engine/include -Ilib/sdl_engine/steam/GameNetworkingSockets/include/steam -isystem/usr/include/freetype2 -std=c++17 $(VARS)
+CXXFLAGS        += -funroll-all-loops -Iinclude -Ilib/sdl_engine/include -Wall -I/usr/include/bullet -Ilib/sdl_engine/steam/GameNetworkingSockets/include/steam -isystem/usr/include/freetype2 -std=c++17 $(VARS)
 
 all: engine $(TARGET)
 

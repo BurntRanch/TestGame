@@ -1,4 +1,5 @@
 -Iinclude
 -Ilib/sdl_engine/include
 -Ilib/sdl_engine/include/steam
+-I/usr/include/bullet
 -isystem/usr/include/freetype2

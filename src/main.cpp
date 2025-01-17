@@ -1,34 +1,21 @@
-#include "camera.hpp"
 #include <SDL3/SDL_events.h>
 #include <SDL3/SDL_keycode.h>
 #include <SDL3/SDL_mouse.h>
 #include <SDL3/SDL_scancode.h>
-#include <chrono>
 #include <engine.hpp>
 #include <glm/ext/matrix_projection.hpp>
 #include <glm/ext/matrix_transform.hpp>
 #include <glm/geometric.hpp>
 #include <glm/matrix.hpp>
 #include <memory>
-#include <new>
 #include <settings.hpp>
 #include <fmt/core.h>
 #include <fmt/ranges.h>
-#include <stdexcept>
 #include <string>
-#include "camera.hpp"
-#include "common.hpp"
 #include "model.hpp"
 #include "steamnetworkingtypes.h"
 #include "isteamnetworkingutils.h"
-#include "ui/arrows.hpp"
-#include "ui/button.hpp"
-#include "ui/label.hpp"
-#include "ui/panel.hpp"
 #include "util.hpp"
-#include "rapidxml.hpp"
-#include "rapidxml_print.hpp"
-#include "tinyfiledialogs.h"
 
 Settings settings("settings.toml");
 std::unique_ptr<Engine> engine;
@@ -70,19 +57,23 @@ void Update() {
     //fmt::println("Hi!");
 }
 
-void FixedUpdate(const std::array<bool, 322> &keyMap) {
+void FixedUpdate() {
+
+}
+
+void onKeyPress(SDL_Event *event) {
     if (!engine->IsConnectedToGameServer()) {
         return;
     }
 
     State::Movement = 0;
 
-    if (keyMap[SDL_SCANCODE_RIGHT]) {
+    if (event->key.scancode == SDL_SCANCODE_RIGHT) {
         fmt::println("Moving right!");
         State::Movement += 1.0f / 64.0f;
     }
 
-    if (keyMap[SDL_SCANCODE_LEFT]) {
+    if (event->key.scancode == SDL_SCANCODE_RIGHT) {
         fmt::println("Moving left");
         State::Movement -= 1.0f / 64.0f;
     }
@@ -123,7 +114,7 @@ int main(int argc, char *argv[]) {
     engine->InitRenderer(settings, nullptr);
     engine->InitNetworking();
 
-    engine->GetRenderer()->RegisterFixedUpdateFunction(FixedUpdate);
+    engine->RegisterSDLEventListener(onKeyPress, SDL_EVENT_KEY_DOWN);
 
     engine->RegisterUIButtonListener(onButtonClick);
 
@@ -133,7 +124,7 @@ int main(int argc, char *argv[]) {
         State::ServerAddress = argv[1];
     }
 
-    engine->StartRenderer();
+    engine->Start();
 
     return 0;
 }
