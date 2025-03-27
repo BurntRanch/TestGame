@@ -16,7 +16,6 @@
 #include "Node/Node3D/Model3D/Model3D.hpp"
 #include "Node/Node3D/Node3D.hpp"
 #include "SceneTree.hpp"
-#include "model.hpp"
 #include "steamnetworkingtypes.h"
 #include "isteamnetworkingutils.h"
 #include "util.hpp"
@@ -84,18 +83,9 @@ void FixedUpdate() {
 
 int main(int argc, char *argv[]) {
     engine = std::make_unique<Engine>();
-    
     engine->InitRenderer(settings);
-    // engine->InitNetworking();
-
-    // engine->RegisterSDLEventListener(onKeyPress, SDL_EVENT_KEY_DOWN);
-
-    // engine->RegisterUIButtonListener(onButtonClick);
-
-    // engine->LoadUIFile("ui.xml");
 
     SceneTree *tree = engine->GetSceneTree();
-
     tree->ImportFromGLTF2("resources/scene.glb");
 
     engine->Start();
