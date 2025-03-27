@@ -7,7 +7,8 @@ DEBUG		?= 1
 # WAY easier way to build debug and release builds
 ifeq ($(DEBUG), 1)
         BUILDDIR  = build/debug
-        CXXFLAGS := -g -Wpedantic -Wall -Wextra -Wno-unused-parameter $(DEBUG_CXXFLAGS) $(CXXFLAGS)
+        CXXFLAGS := -g -O2 -fsanitize=undefined -Wpedantic -Wall -Wextra -Wno-unused-parameter $(DEBUG_CXXFLAGS) $(CXXFLAGS)
+		LDFLAGS := -fsanitize=undefined
 else
         BUILDDIR  = build/release
         CXXFLAGS := -O2 $(CXXFLAGS)

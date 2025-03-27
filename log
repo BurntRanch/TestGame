@@ -1,0 +1,27 @@
+Initialized with errors: 
+swapchain == nullptr: false
+src/engine.cpp:500:80: runtime error: member call on address 0x000003423950 which does not point to an object of type 'ISteamNetworkingSockets'
+0x000003423950: note: object has invalid vptr
+ 00 00 00 00  d0 7b 8e 83 64 7f 00 00  50 d6 8e 83 64 7f 00 00  00 89 8e 83 64 7f 00 00  00 00 00 00
+              ^~~~~~~~~~~~~~~~~~~~~~~
+              invalid vptr
+src/engine.cpp:717:42: runtime error: member call on address 0x000003423950 which does not point to an object of type 'ISteamNetworkingSockets'
+0x000003423950: note: object has invalid vptr
+ 00 00 00 00  d0 7b 8e 83 64 7f 00 00  50 d6 8e 83 64 7f 00 00  00 89 8e 83 64 7f 00 00  00 00 00 00
+              ^~~~~~~~~~~~~~~~~~~~~~~
+              invalid vptr
+src/networking/connection.cpp:35:72: runtime error: member call on address 0x000003423950 which does not point to an object of type 'ISteamNetworkingSockets'
+0x000003423950: note: object has invalid vptr
+ 00 00 00 00  d0 7b 8e 83 64 7f 00 00  50 d6 8e 83 64 7f 00 00  00 89 8e 83 64 7f 00 00  00 00 00 00
+              ^~~~~~~~~~~~~~~~~~~~~~~
+              invalid vptr
+src/networking/connection.cpp:21:66: runtime error: member call on address 0x000003423950 which does not point to an object of type 'ISteamNetworkingSockets'
+0x000003423950: note: object has invalid vptr
+ 00 00 00 00  d0 7b 8e 83 64 7f 00 00  50 d6 8e 83 64 7f 00 00  00 89 8e 83 64 7f 00 00  00 00 00 00
+              ^~~~~~~~~~~~~~~~~~~~~~~
+              invalid vptr
+src/networking/connection.cpp:15:41: runtime error: member call on address 0x000003423950 which does not point to an object of type 'ISteamNetworkingSockets'
+0x000003423950: note: object has invalid vptr
+ 00 00 00 00  d0 7b 8e 83 64 7f 00 00  50 d6 8e 83 64 7f 00 00  00 89 8e 83 64 7f 00 00  00 00 00 00
+              ^~~~~~~~~~~~~~~~~~~~~~~
+              invalid vptr
