@@ -6,6 +6,8 @@ settings.*
 
 *.tar.*
 
+shaders
+
 # Prerequisites
 *.d
 
