@@ -23,15 +23,21 @@
 Settings settings("settings.toml");
 std::unique_ptr<Engine> engine;
 
-float lastX, lastY;
-Uint32 lastMouseState;
+float t = 0.0f;
 
 void Update() {
     //fmt::println("Hi!");
 }
 
 void FixedUpdate() {
+    /* funny name */
+    auto nodes = engine->GetSceneTree()->FindNodesByName("EpicConsole420");
+    UTILASSERT(!nodes.empty() && typeid(*nodes[0]) == typeid(Model3D));
 
+    float sinResult = glm::min(glm::max((sin(t)+1)/2, 0.1f), 0.9f);
+
+    reinterpret_cast<Model3D *>(nodes[0])->SetScale(glm::vec3(sinResult * 5, sinResult, sinResult * 5));
+    t += ENGINE_FIXED_UPDATE_DELTATIME;
 }
 
 // void onKeyPress(SDL_Event *event) {
@@ -84,6 +90,7 @@ void FixedUpdate() {
 int main(int argc, char *argv[]) {
     engine = std::make_unique<Engine>();
     engine->InitRenderer(settings);
+    engine->RegisterFixedUpdateFunction(FixedUpdate);
 
     SceneTree *tree = engine->GetSceneTree();
     tree->ImportFromGLTF2("resources/scene.glb");
